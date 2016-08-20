@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Viewer</title>
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec2 texelCoord;
+        uniform sampler2D sampler;
+        uniform int material;
+        void main(void)
+        {
+            if(material == 0)
+            {
+                gl_FragColor = vec4(0.0, 0.0 ,1.0, 1.0);
+            }
+            else
+            {
+                gl_FragColor = texture2D(sampler, texelCoord);
+//                gl_FragColor = vec4(1.0, 1.0 ,1.0, 1.0);
+            }
+        }
+    </script>
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute vec3 vertexPos;
+        attribute vec2 texCoord;
+        uniform mat4 mvMatrix;
+        uniform mat4 pMatrix;
+        //uniform mat4 vMatrix;
+        varying vec2 texelCoord;
+        void main(void)
+        {
+            gl_Position = pMatrix * mvMatrix * vec4(vertexPos, 1.0);
+            texelCoord = texCoord;
+        }
+    </script>
+    <script type="text/javascript" src="gl-matrix.js"></script>
+    <script type="text/javascript" src="util.js"></script>
+    <script type="text/javascript" src="viewer.js"></script>
+</head>
+<body onload="loadResource('Predio.json', true, function (err, model)
+    {
+       if(err)
+           console.error(err);
+       else
+           webGLStart(model);
+    });">
+    <canvas id="canvas" style="border: none;" width="720" height="720"></canvas>
+
+<br>PERGUNTAR PARA O PS SOBRE AS MATRIZES!!!!!
+</body>
+</html>
