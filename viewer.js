@@ -21,8 +21,8 @@ function webGLStart(model)
     var canvas = document.getElementById("canvas");
     initGL(canvas);
     initShaders();
-    initTexture('ak-47.jpg');
     initBuffers(model);
+    initTexture(model);
 
     gl.clearColor(0.12, 0.12, 0.12, 1.0);
     gl.enable(gl.DEPTH_TEST);
@@ -107,16 +107,29 @@ function handleLoadedTexture(texture)
     gl.bindTexture(gl.TEXTURE_2D, null);
 }
 
-var Texture;
-function initTexture(url)
+var Texture = [];
+function initTexture(model)
 {
-    Texture = gl.createTexture();
-    Texture.image = new Image();
-    Texture.image.onload = function ()
+    var n = model.materials.length;
+    for(var i = 0; i < n; i++)
     {
-        handleLoadedTexture(Texture)
-    };
-    Texture.image.src = url;
+        Texture[i] = gl.createTexture();
+        Texture[i].image = new Image();
+        Texture[i].image.onload = function ()
+        {
+            handleLoadedTexture(Texture[i]);
+        };
+        if(model.materials[i].properties.length > 14)
+        {
+            if(model.materials[i].properties.length == 20)
+                Texture[i].image.src = model.materials[i].properties[14].value;
+            else
+                Texture[i].image.src = model.materials[i].properties[13].value
+        }
+        else
+            Texture[i].image.src = 'ak-47.jpg';
+        console.log(i);
+    }
 }
 
 // ======================= // MATRIX // ======================= //
@@ -147,6 +160,10 @@ var pitch = 0;
 var pitchRate = 0;
 var yaw = 0;
 var yawRate = 0;
+var eRate = 0;
+var e = 0;
+
+
 var xPos = 0;
 var yPos = 0.4;
 var zPos = 0;
@@ -160,6 +177,13 @@ function handleKeys()
         pitchRate = -0.1;
     else
         pitchRate = 0;
+
+    if(currentlyPressedKeys[69])//e
+        eRate = 0.1;
+    else if(currentlyPressedKeys[81])
+        eRate = -0.1;
+    else
+        eRate = 0;
 
     if (currentlyPressedKeys[37] || currentlyPressedKeys[65])// Left cursor key or A
         yawRate = 0.1;
@@ -202,6 +226,7 @@ function initBuffers(model)
             gl.bindBuffer(gl.ARRAY_BUFFER, textureBuffer[i]);
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureData), gl.STATIC_DRAW);
             textureBuffer[i].numItems = textureData.length;
+            textureBuffer[i].materialIndex = model.meshes[i].materialindex;
             materials++;
         }
 
@@ -232,8 +257,11 @@ function drawScene()
     mat4.identity(mvMatrix);
     mat4.rotate(mvMatrix, mvMatrix, toRad(-pitch), [1, 0, 0]);
     mat4.rotate(mvMatrix, mvMatrix, toRad(-yaw), [0, 1, 0]);
-
+    mat4.rotate(mvMatrix, mvMatrix, toRad(+e), [1, 0, 1]);
+    
     mat4.translate(mvMatrix, mvMatrix, [-xPos, -yPos, -zPos]);
+
+    // mat4.lookAt(vMatrix, [xPos, yPos, zPos], [0.0, 0.0, 0.0], [0, 1, 0]);//Camera: (Position, Where's Looking, Which Direction is Up);
 
     for(var i = 0; i < n; i++)
     {
@@ -241,7 +269,7 @@ function drawScene()
         if(textureBuffer[i])
         {
             gl.activeTexture(33984 + materials);//gl.TEXTURE0 = 33984;
-            gl.bindTexture(gl.TEXTURE_2D, Texture);
+            gl.bindTexture(gl.TEXTURE_2D, Texture[textureBuffer.materialIndex]);
             gl.uniform1i(shaderProgram.samplerUniform, 0);
 
             gl.bindBuffer(gl.ARRAY_BUFFER, textureBuffer[i]);
@@ -279,6 +307,7 @@ function animate()
         }
         yaw += yawRate * elapsed;
         pitch += pitchRate * elapsed;
+        e += eRate * elapsed;
     }
     lastTime = timeNow;
 }
