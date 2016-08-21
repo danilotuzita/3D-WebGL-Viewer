@@ -30,7 +30,8 @@ function webGLStart(model)
     document.onkeydown = handleKeyDown;
     document.onkeyup = handleKeyUp;
 
-    tick();
+    drawScene();
+    // tick();
 }
 
 // ======================= // SHADERS // ======================= //
@@ -115,20 +116,26 @@ function initTexture(model)
     {
         Texture[i] = gl.createTexture();
         Texture[i].image = new Image();
+        console.log(Texture[i]);
         Texture[i].image.onload = function ()
         {
             handleLoadedTexture(Texture[i]);
         };
-        if(model.materials[i].properties.length > 14)
+        var k = -1;
+        for(var j = 0; j < model.materials[i].properties.length; j++)
         {
-            if(model.materials[i].properties.length == 20)
-                Texture[i].image.src = model.materials[i].properties[14].value;
-            else
-                Texture[i].image.src = model.materials[i].properties[13].value
+            if(model.materials[i].properties[j].key == '$tex.file')
+                k = j;
+        }
+        if(k != -1)
+        {
+            Texture[i].image.src = model.materials[i].properties[k].value;
         }
         else
-            Texture[i].image.src = 'ak-47.jpg';
-        console.log(i);
+        {
+            Texture[i].image.src = 'Prediok2/missing_texture.jpg';
+        }
+        console.log(i, Texture[i].image.src);
     }
 }
 
@@ -213,15 +220,15 @@ function initBuffers(model)
     var materials = 0;
     for(var i = 0; i < n; i++)
     {
-        console.log("FOR");
+        // console.log("FOR");
         var vertexData = model.meshes[i].vertices;
         var indexData = [].concat.apply([], model.meshes[i].faces);
         var textureData;
 
         if(model.meshes[i].texturecoords)
         {
-            console.log("if");
             textureData = model.meshes[i].texturecoords[0];
+            console.log(model.meshes[i].materialindex);
             textureBuffer[i] = gl.createBuffer();
             gl.bindBuffer(gl.ARRAY_BUFFER, textureBuffer[i]);
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureData), gl.STATIC_DRAW);
@@ -258,9 +265,7 @@ function drawScene()
     mat4.rotate(mvMatrix, mvMatrix, toRad(-pitch), [1, 0, 0]);
     mat4.rotate(mvMatrix, mvMatrix, toRad(-yaw), [0, 1, 0]);
     mat4.rotate(mvMatrix, mvMatrix, toRad(+e), [1, 0, 1]);
-    
     mat4.translate(mvMatrix, mvMatrix, [-xPos, -yPos, -zPos]);
-
     // mat4.lookAt(vMatrix, [xPos, yPos, zPos], [0.0, 0.0, 0.0], [0, 1, 0]);//Camera: (Position, Where's Looking, Which Direction is Up);
 
     for(var i = 0; i < n; i++)
@@ -268,8 +273,8 @@ function drawScene()
         var materials = 0;
         if(textureBuffer[i])
         {
-            gl.activeTexture(33984 + materials);//gl.TEXTURE0 = 33984;
-            gl.bindTexture(gl.TEXTURE_2D, Texture[textureBuffer.materialIndex]);
+            gl.activeTexture(33984 + textureBuffer[i].materialIndex);//gl.TEXTURE0 = 33984;
+            gl.bindTexture(gl.TEXTURE_2D, Texture[textureBuffer[i].materialIndex]);
             gl.uniform1i(shaderProgram.samplerUniform, 0);
 
             gl.bindBuffer(gl.ARRAY_BUFFER, textureBuffer[i]);
