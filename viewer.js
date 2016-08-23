@@ -30,8 +30,8 @@ function webGLStart(model)
     document.onkeydown = handleKeyDown;
     document.onkeyup = handleKeyUp;
 
-    //drawScene();
-    tick();
+    drawScene();
+    // tick();
 }
 
 // ======================= // SHADERS // ======================= //
@@ -111,10 +111,14 @@ function initTexture(model)
         {
             gl.bindTexture(gl.TEXTURE_2D, Texture[this.n]);
             gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+            gl.generateMipmap(gl.TEXTURE_2D);
+            // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.MIRRORED_REPEAT);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT);
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this);
             gl.bindTexture(gl.TEXTURE_2D, null);
         };
@@ -128,6 +132,8 @@ function initTexture(model)
             image.src = model.materials[i].properties[k].value;
         else
             image.src = 'Prediok2/missing_texture.jpg';
+
+        console.log(image);
     }
 }
 
@@ -161,6 +167,8 @@ var yaw = 0;
 var yawRate = 0;
 
 var jump = 0;
+var lock = 0;
+var crouch = 0;
 
 var xPos = 0;
 var yPos = 0.4;
@@ -188,19 +196,29 @@ function handleKeys()
         yawRate = 0;
 
     if (currentlyPressedKeys[87])// Up cursor key or W
-        forwardSpeed = .15;
+        forwardSpeed = 1;
     else if (currentlyPressedKeys[83])// Down cursor key
-        forwardSpeed = -.15;
+        forwardSpeed = -1;
     else
         forwardSpeed = 0;
 
     if(currentlyPressedKeys[68])
-        lateralSpeed = .15;
+        lateralSpeed = 1;
     else if(currentlyPressedKeys[65])
-        lateralSpeed = -.15;
+        lateralSpeed = -1;
     else
         lateralSpeed = 0;
 
+    if(currentlyPressedKeys[17])
+    {
+        if(lock == 0)
+        {
+            crouch++;
+        }
+        lock = 1;
+    }
+    else
+        lock = 0;
 }
 
 // ======================= // BUFFERS // ======================= //
@@ -265,17 +283,18 @@ function drawScene()
     mat4.rotate(mvMatrix, mvMatrix, toRad(-yaw), [0, 1, 0]);
     // mat4.rotate(mvMatrix, mvMatrix, toRad(+e), [1, 0, 1]);
     mat4.translate(mvMatrix, mvMatrix, [-xPos, -yPos, -zPos]);
+    mat4.translate(mvMatrix, mvMatrix, [0, -100, 1000]);
     // mat4.lookAt(vMatrix, [xPos, yPos, zPos], [0.0, 0.0, 0.0], [0, 1, 0]);//Camera: (Position, Where's Looking, Which Direction is Up);
 
     for(var i = 0; i < n; i++)
     {
-        mat4.translate(mvMatrix, mvMatrix, [-100, 0, 100]);
+        // mat4.translate(mvMatrix, mvMatrix, [0, 0, 100]);
         var materials = 0;
         if(textureBuffer[i])
         {
-            gl.activeTexture(33984 + textureBuffer[i].materialIndex);//gl.TEXTURE0 = 33984;
+            gl.activeTexture(gl.TEXTURE0 + textureBuffer[i].materialIndex);//gl.TEXTURE0 = 33984;
             gl.bindTexture(gl.TEXTURE_2D, Texture[textureBuffer[i].materialIndex]);
-            gl.uniform1i(shaderProgram.samplerUniform, 0);
+            gl.uniform1i(shaderProgram.samplerUniform, textureBuffer[i].materialIndex);
 
             gl.bindBuffer(gl.ARRAY_BUFFER, textureBuffer[i]);
             gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, textureBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -333,6 +352,13 @@ function animate()
                 jump = 0;
                 down = 0;
             }
+        }
+        if(crouch)
+        {
+            if(crouch % 2 == 0)
+                yPos = -25;
+            else
+                yPos = 0;
         }
         yaw += yawRate * elapsed;
         pitch += pitchRate * elapsed;
