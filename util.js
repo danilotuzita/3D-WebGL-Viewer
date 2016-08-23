@@ -33,3 +33,7 @@ function toRad(deg)
     return glMatrix.toRadian(deg);    
 }
 
+function getMaxOfArray(numArray)
+{
+    return Math.max.apply(null, numArray);
+}

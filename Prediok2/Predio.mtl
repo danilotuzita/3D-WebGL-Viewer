@@ -1,0 +1,274 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 22.08.2016 17:34:16
+
+newmtl Steel_Brushed_Stainless
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Steel_Brushed_Stainless.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Steel_Brushed_Stainless.jpg
+
+newmtl material_2
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\material_2.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\material_2.jpg
+
+newmtl __Mirror_02_1
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Mirror_02_1.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Mirror_02_1.jpg
+
+newmtl material_1
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\material_1.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\material_1.jpg
+
+newmtl material
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Basic_Tile
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Basic_Tile.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Basic_Tile.jpg
+
+newmtl Metal_Silver
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Silver.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Silver.jpg
+
+newmtl __Translucent_Glass_Blue_1
+	Ns 0.0000
+	Ni 1.5000
+	d 0.7020
+	Tr 0.2980
+	Tf 0.7020 0.7020 0.7020 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.3922 0.5843 0.9294
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Translucent_Glass_Gray
+	Ns 0.0000
+	Ni 1.5000
+	d 0.8706
+	Tr 0.1294
+	Tf 0.8706 0.8706 0.8706 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.0000 0.0000 0.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl __Aluminum_1
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Aluminum_1.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Aluminum_1.jpg
+
+newmtl Aluminum
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Aluminum.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Aluminum.jpg
+
+newmtl Metal_Corrugated_Shiny
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Corrugated_Shiny.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Corrugated_Shiny.jpg
+
+newmtl Metal_Steel_Textured_White
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Steel_Textured_White.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Steel_Textured_White.jpg
+
+newmtl __Mirror_01_1
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Mirror_01_1.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Mirror_01_1.jpg
+
+newmtl Cladding_Stucco_White
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Cladding_Stucco_White.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Cladding_Stucco_White.jpg
+
+newmtl Lisanne_Tool_Bag_03
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.4353 0.5490 0.4353
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl __Metal_Corrugated_Shiny_1
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Metal_Corrugated_Shiny_1.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\__Metal_Corrugated_Shiny_1.jpg
+
+newmtl Metal_Aluminum_Anodized
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Aluminum_Anodized.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Metal_Aluminum_Anodized.jpg
+
+newmtl White_Subway_Tile
+	Ns 0.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\White_Subway_Tile.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\White_Subway_Tile.jpg
+
+newmtl Translucent_Glass_Block_Dark
+	Ns 0.0000
+	Ni 1.5000
+	d 0.8000
+	Tr 0.2000
+	Tf 0.8000 0.8000 0.8000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Translucent_Glass_Block_Dark.jpg
+	map_Kd C:\Users\Danilo S. Tuzita\Documents\nvioaoeçna\Prediok2\Translucent_Glass_Block_Dark.jpg
